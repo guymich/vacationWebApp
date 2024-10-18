@@ -1,0 +1,40 @@
+@model IEnumerable<VacationSummaryViewModel>
+
+    @{
+        var count = 0;
+        var topFollownumber = 0;
+        if(ViewBag.MaxFollowersCount <= 19 ){
+            topFollownumber = 1;
+        }else{
+            topFollownumber = (int)Math.Floor((double)ViewBag.MaxFollowersCount / 10);
+        }  
+
+    }
+<div class="summary">
+
+    <div class="summary_wrapper">
+    
+        <div class="summary_bottom">
+        @foreach (var vacationItem in Model)
+        {
+            var height = vacationItem.FollowersCount * 33;
+            <div class="summary_vacation">
+                <div class="summary_vacation_count" style="height: @(height)px; background: #76c1d1;"></div>
+                <div class="summary_vacation_name">@vacationItem.VacationName</div>
+            </div> 
+        }
+        </div>
+        <div class="summary_left">
+        @foreach (var vacationItem in Model)
+        {
+            @if (count <= 10){
+                var cuurentCount = topFollownumber * count ;
+                <div class="summary_number">@count</div> 
+                count++;
+            }
+        
+        }
+        </div>
+
+    </div>
+</div>

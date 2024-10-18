@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
+
+@{
+    var user = await UserManager.GetUserAsync(User);
+    var FirstName = user?.FirstName;
+    var lastName  = user?.LastName;
+}
+
+
+@if (User.Identity != null && User.Identity.IsAuthenticated)
+{
+    <p>Welcome, @FirstName @lastName!</p>
+}
+else
+{
+    <p>Please log in.</p>
+}
